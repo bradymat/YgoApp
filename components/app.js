@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 class App extends Component {
-real sweet test
   constructor (props) {
     super(props)
   }

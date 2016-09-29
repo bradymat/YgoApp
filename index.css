@@ -1,3 +1,26 @@
-main {
+body {
   text-align: center;
+  margin: 0;
+}
+/*Card*/
+.selectedCard{
+  height: 100vh;
+  background-color: red;
+
+}
+/*Deck*/
+.selectedDeck{
+  height: 100vh;
+  background-color: blue;
+
+}
+/*Search*/
+.searchCards{
+  height: 100vh;
+  background-color: green;
+
+
+}
+.searchResults{
+
 }

@@ -3,14 +3,7 @@ import SelectedCard from './selectedCard'
 import SelectedDeck from './selectedDeck'
 import SearchCards from './searchCards'
 import Request from 'superagent'
-import cors from 'cors'
 import _ from 'lodash'
-
-var corsOptions = {
-  origin: 'http://example.com',
-  optionsSuccessStatus: 200
-}
-console.log(cors());
 
 class App extends React.Component {
 
@@ -38,7 +31,7 @@ class App extends React.Component {
 
   search(query = "star"){
     var url = `http://yugioh.wikia.com/api/v1/Search/List?query=${query}&limit=200&batch=1&namespaces=106`
-    Request.get(url, cors()).then((response) => {
+    Request.get(url).then((response) => {
       this.setState({
         cards: response.body.items[0]
       });

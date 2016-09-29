@@ -5,37 +5,40 @@ import SearchCards from './searchCards'
 import Request from 'superagent'
 import _ from 'lodash'
 
+
 class App extends React.Component {
 
   constructor(){
-    super();
-    this.state = {};
+    super()
+    this.state = {}
   }
-
   componentWillMount(){
-    this.search();
-  }
+  this.search()
+}
   updateSearch(){
-    this.search(this.refs.query.value);
+    this.search(this.refs.query.value)
   }
+
   render(){
-
     var cards = _.map(this.state.cards, (card) => {
-      return <li>{card.id}</li>;
-    });
+      return <li>{card}</li>
+    })
+    console.log({cards})
+
+
     return <div>
-      <input ref="query" onChange={ (e) => { this.updateSearch(); } } type="text" />
+      <input ref="query" onChange={ (e) => { this.updateSearch() } } type="text" />
       <ul>{cards}</ul>
-    </div>;
+    </div>
   }
 
-  search(query = "star"){
+  search(query = "blue-eyes+white+dragon"){
     var url = `http://yugioh.wikia.com/api/v1/Search/List?query=${query}&limit=200&batch=1&namespaces=106`
     Request.get(url).then((response) => {
       this.setState({
         cards: response.body.items[0]
-      });
-    });
+      })
+    })
   }
 }
 

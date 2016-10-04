@@ -1,8 +1,18 @@
 body {
   text-align: center;
   margin: 0;
+  min-width: 100%;
 }
 /*Card*/
+.col-md-3{
+  width: 25%;
+  float: left;
+}
+.col-md-6{
+  width: 50%;
+  float: left;
+
+}
 .selectedCard{
   height: 100vh;
   background-color: red;
@@ -22,5 +32,13 @@ body {
 
 }
 .searchResults{
-
+  width: 100%;
+}
+.searchItem{
+  max-height: 30vh;
+  max-width: 33%;
+}
+.searchItem img{
+  max-width: 100%;
+  display: flex;
 }

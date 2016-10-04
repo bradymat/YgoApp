@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/bradymat/Ygo App",
   "dependencies": {
-    "lodash": "^4.16.2",
+    "cheerio": "^0.22.0",
+    "lodash": "^4.16.3",
+    "request": "^2.75.0",
     "superagent": "^2.3.0"
   },
   "devDependencies": {

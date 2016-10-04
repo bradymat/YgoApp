@@ -1,45 +1,50 @@
 import React, { Component } from 'react'
-import SelectedCard from './selectedCard'
-import SelectedDeck from './selectedDeck'
-import SearchCards from './searchCards'
-import Request from 'superagent'
-import _ from 'lodash'
-
+// import SelectedCard from './selectedCard'
+// import SelectedDeck from './selectedDeck'
+// import SearchCards from './searchCards'
+import SearchApi from '../lib/searchApi'
+let _ = require('lodash')
 
 class App extends React.Component {
-
   constructor(){
     super()
-    this.state = {}
+    this.state = { cards: [], ids: [], images: [], query: "twin twister"}
   }
   componentWillMount(){
-  this.search()
-}
+    console.log("call search")
+    SearchApi(this.state.query,(response) => {
+      console.log("res", response)
+      this.setState({images: response})
+    })
+  }
   updateSearch(){
-    this.search(this.refs.query.value)
-  }
+    console.log("update search")
+    SearchApi(this.refs.query.value, (response) => {
+      this.setState({images: response})
+    })
+    console.log("this images", this.state.images);
 
+  }
   render(){
-    var cards = _.map(this.state.cards, (card) => {
-      return <li>{card}</li>
-    })
-    console.log({cards})
-
-
-    return <div>
-      <input ref="query" onChange={ (e) => { this.updateSearch() } } type="text" />
-      <ul>{cards}</ul>
-    </div>
-  }
-
-  search(query = "blue-eyes+white+dragon"){
-    var url = `http://yugioh.wikia.com/api/v1/Search/List?query=${query}&limit=200&batch=1&namespaces=106`
-    Request.get(url).then((response) => {
-      this.setState({
-        cards: response.body.items[0]
-      })
-    })
+    return(
+      <div>
+        <div className='selectedCard col-md-3'>
+        </div>
+        <div className='selectedDeck col-md-6'>
+        </div>
+        <div className='searchCards col-md-3'>
+          <div>
+          <input ref="query" placeholder="search" onChange={ (e) => { this.updateSearch() } } type="text" />
+          </div>
+          <div className="searchResults">{
+            this.state.images.map(function (image) {
+              return <div className="searchItem"><img src={image}/></div>
+            })
+          }
+          </div>
+        </div>
+      </div>
+    )
   }
 }
-
 export default App

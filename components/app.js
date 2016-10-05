@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-// import SelectedCard from './selectedCard'
-// import SelectedDeck from './selectedDeck'
-// import SearchCards from './searchCards'
 import SearchApi from '../lib/searchApi'
 let _ = require('lodash')
 import Sortable from 'sortablejs'

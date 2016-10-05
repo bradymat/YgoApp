@@ -1,21 +1,42 @@
 import React, { Component } from 'react'
-// import SelectedCard from './selectedCard'
-// import SelectedDeck from './selectedDeck'
-// import SearchCards from './searchCards'
 import SearchApi from '../lib/searchApi'
 let _ = require('lodash')
-// import ReactDOM from 'react-dom'
-import Draggable from 'react-draggable'
+import Sortable from 'sortablejs'
 
 class App extends React.Component {
   constructor(){
     super()
-    this.state = { cards: [], ids: [], images: [], query: "twin twister"}
+    this.state = { cards: [], ids: [], images: [], query: "burning abyss"}
   }
-  eventLogger(e, data){
-    console.log('Event: ', event)
-    console.log('Data: ', data)
-  }
+
+  //Sortable
+  sortableContainersDecorator(componentBackingInstance){
+    // check if backing instance not null
+    if (componentBackingInstance) {
+      let options = {
+        handle: ".group-title" // Restricts sort start click/touch to the specified element
+      };
+      Sortable.create(componentBackingInstance, options);
+    }
+  };
+
+  sortableGroupDecorator(componentBackingInstance){
+    // check if backing instance not null
+    if (componentBackingInstance) {
+      let options = {
+        draggable: "div", // Specifies which items inside the element should be sortable
+        group: {
+          name: 'advanced',
+          pull: 'clone',
+          put: 'false',
+          animation: 100
+        }
+      };
+      Sortable.create(componentBackingInstance, options);
+    }
+  };
+
+  //Search
   componentWillMount(){
     console.log("call search")
     SearchApi(this.state.query,(response) => {
@@ -33,28 +54,22 @@ class App extends React.Component {
   }
   render(){
     return(
-      <div className="project">
+      <div className="project" ref={this.sortableContainersDecorator}>
         <div className='selectedDeck col-md-9'>
           <input className="deckTitle" placeholder="Enter Deck Name" type="text"/>
-          <div className="deckSpace"></div>
+          <div className="deckSpace group-list" ref={this.sortableGroupDecorator}></div>
         </div>
         <div className='searchCards col-md-3'>
           <div className="searchQuery">
-            <input ref="query" placeholder="search" onChange={ (e) => { this.updateSearch() } } type="text" />
+          <input ref="query" placeholder="search" onChange={ (e) => { this.updateSearch() } } type="text" />
           </div>
-          <div className="searchResults">{
+          <div className="searchResults group-list" ref={this.sortableGroupDecorator}>{
             this.state.images.map((image) => {
               return (
-                <Draggable
-                  axis="both"
-                  grid={[90, 130]}
-                  onStart={this.handleStart}
-                  onDrag={this.handleDrag}
-                  onStop={this.handleStop}>
-                    <div className="searchItem"><img src={image}/></div>
-                </Draggable>)
-              })
-            }
+                <div className="searchItem"><img src={image}/></div>
+              )
+            })
+          }
           </div>
         </div>
       </div>

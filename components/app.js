@@ -43,7 +43,7 @@ class App extends React.Component {
             <input ref="query" placeholder="search" onChange={ (e) => { this.updateSearch() } } type="text" />
           </div>
           <div className="searchResults">{
-            this.state.images.slice(0).reverse().map((image) => {
+            this.state.images.map((image) => {
               return (
                 <Draggable
                   axis="both"

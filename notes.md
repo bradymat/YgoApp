@@ -22,16 +22,22 @@ App
     cards []
 
 
+    import Draggable from 'react-draggable'
 
-
-
+    <Draggable
+      axis="both"
+      grid={[90, 130]}
+      onStart={this.handleStart}
+      onDrag={this.handleDrag}
+      onStop={this.handleStop}>
+                </Draggable>
 
     <div>{
       this.state.images.map(function (image, i) {
         return <div><img src={image[i]}/></div>
       })
     }</div>
-    
+
     <div>{
     _.forEach(this.state.images, function(value) {
       return value

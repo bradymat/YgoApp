@@ -4,44 +4,65 @@ import App from './components/app'
 
 render(<App/>, document.querySelector('main'))
 console.log('welcome to ygoApp')
-
-
-//Draggable Test
+//
 
 // import React from 'react'
-// import ReactDOM from 'react-dom'
-// import Draggable from 'react-draggable'
+// import { render } from 'react-dom'
+// import Sortable from 'sortablejs'
 //
-// class App extends React.Component {
+// //
+// // Groups
+// //
+//
+// export class SortableExampleEsnext extends React.Component {
+//
+//   sortableContainersDecorator(componentBackingInstance){
+//     // check if backing instance not null
+//     if (componentBackingInstance) {
+//       let options = {
+//         handle: ".group-title" // Restricts sort start click/touch to the specified element
+//       };
+//       Sortable.create(componentBackingInstance, options);
+//     }
+//   };
+//
+//   sortableGroupDecorator(componentBackingInstance){
+//     // check if backing instance not null
+//     if (componentBackingInstance) {
+//       let options = {
+//         draggable: "div", // Specifies which items inside the element should be sortable
+//         group: "shared"
+//       };
+//       Sortable.create(componentBackingInstance, options);
+//     }
+//   };
 //
 //   render() {
 //     return (
-//       <Draggable
-//         axis="both"
-//         grid={[1, 1]}
-//         zIndex={100}
-//         onStart={this.handleStart}
-//         onDrag={this.handleDrag}
-//         onStop={this.handleStop}>
-//         <div>
-//           <img src="http://vignette1.wikia.nocookie.net/yugioh/images/f/fc/TwinTwisters-MP16-EN-SR-1E.png/revision/latest/scale-to-width-down/300?cb=20160901210043"/>
+//       <div className="container" ref={this.sortableContainersDecorator}>
+//         <div className="group">
+//           <h2 className="group-title">Group 1</h2>
+//           <div className="group-list" ref={this.sortableGroupDecorator}>
+//             <div>88888888</div>
+//             <div>7777777</div>
+//             <div>666666</div>
+//             <div>55555</div>
+//           </div>
 //         </div>
-//       </Draggable>
-//
-//     )
+//         <div className="group">
+//           <h2 className="group-title">Group 2</h2>
+//           <div className="group-list" ref={this.sortableGroupDecorator}>
+//             <div>1</div>
+//             <div>22</div>
+//             <div>333</div>
+//             <div>4444</div>
+//           </div>
+//         </div>
+//       </div>
+//     );
 //   }
 // }
 //
-// ReactDOM.render(<App/>, document.querySelector('main'))
-
-// <Draggable
-//   axis="both"
-//   grid={[1, 1]}
-//   zIndex={100}
-//   onStart={this.handleStart}
-//   onDrag={this.handleDrag}
-//   onStop={this.handleStop}>
-//   <div>
-//     <img src="http://vignette1.wikia.nocookie.net/yugioh/images/f/fc/TwinTwisters-MP16-EN-SR-1E.png/revision/latest/scale-to-width-down/300?cb=20160901210043"/>
-//   </div>
-// </Draggable>
+// render(<div>
+//     <SortableExampleEsnext/>
+// </div>, document.body);

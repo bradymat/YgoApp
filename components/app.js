@@ -6,7 +6,7 @@ import Sortable from 'sortablejs'
 class App extends React.Component {
   constructor(){
     super()
-    this.state = { cards: [], ids: [], images: [], query: "burning abyss"}
+    this.state = { cards: [], ids: [], images: [], query: "hero"}
   }
 
   //Sortable
@@ -64,7 +64,7 @@ class App extends React.Component {
           <input ref="query" placeholder="search" onChange={ (e) => { this.updateSearch() } } type="text" />
           </div>
           <div className="searchResults group-list" ref={this.sortableGroupDecorator}>{
-            this.state.images.map((image) => {
+            this.state.images.reverse().map((image) => {
               return (
                 <div className="searchItem"><img src={image}/></div>
               )
